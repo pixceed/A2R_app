@@ -1,14 +1,66 @@
-<html>
+<!-- app/templates/index.html -->
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<title>テストページ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+    <title>AI Aqua Racer</title>
 </head>
 <body>
-<br/>
-<br/>
-これはテストページです。<br/>
-<br/>
-新しいサイトのチェックに使います。<br/>
-<br/>
-<br/>
+    <form id="myForm">
+        <h2>入力データ</h2>
+        
+        <div<>
+            <label for="jcd">レース場コード</label>
+            <select class="selectpicker form-control" id="jcd" name="jcd" required></select>
+            <!-- <input type="text" id="jcd" name="jcd" required pattern="\b([1-9]|1[0-9]|2[0-4])\b"> -->
+        </div>
+
+        <div>
+            <label for="racenum">レース番号</label>
+            <select class="selectpicker form-control" id="racenum" name="racenum" required></select>
+            <!-- <input type="number" id="racenum" name="racenum" min="1" max="12" required> -->
+        </div>
+
+        <div>
+            <label for="date">レース日:</label>
+            <input class="selectpicker form-control" type="date" id="date" name="date">
+        </div>
+
+        <div>
+            <label for="should_dl">DLデータ使用の有無:</label>
+            <select class="selectpicker form-control" id="should_dl" name="should_dl" required>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>    
+
+        <button type="button" onclick="sendData()">予測する</button>
+    </form>
+
+    <div>
+        <h2>予測結果</h2>
+        <div class="container table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Expectation</th>
+                        <th>Odds</th>
+                        <th>Order3T</th>
+                    </tr>
+                </thead>
+                <tbody id="data-table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
